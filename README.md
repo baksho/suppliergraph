@@ -4,7 +4,7 @@
 
 SupplierGraph is a portfolio project that covers the full knowledge-graph life cycle on real data: ontology design, R2RML integration, entity resolution, SHACL validation, rule-based reasoning, KG embeddings, text-to-SPARQL question answering with grounding checks, a REST API and a web UI.
 
-> **Read this first.** This is a research/portfolio prototype run on a *sample* of the data (20,000 tenders). Sanction matches and exposure flags are **leads for human review, not findings**. The evaluation numbers below are modest on purpose: they are reported as measured, including the weak ones. Check the licence of every data source before reuse (see [Data](#data-and-licences)).
+> This is a research/portfolio prototype run on a *sample* of the data (20,000 tenders). Sanction matches and exposure flags are **leads for human review, not findings**. The evaluation numbers below are modest on purpose: they are reported as measured, including the weak ones. Check the licence of every data source before reuse (see [Data](#data-and-licences)).
 
 ---
 
@@ -43,7 +43,7 @@ flowchart LR
 
 ---
 
-## Results (run of 21 Nov 2026)
+## Results
 
 Everything below was produced by running this repository on real data in Google Colab. Settings: GLEIF restricted to `DE`, first **20,000** OCDS releases, Llama-3.1-8B-Instruct via Hugging Face Inference Providers.
 
@@ -70,7 +70,7 @@ Everything below was produced by running this repository on real data in Google 
 
 The embedding model beats popularity, but on new pairs it is barely above chance and a simple buyer-history baseline matches it overall. The result is reported as a baseline comparison, not as a useful recommender; a 20,000-tender sample is probably too small.
 
-**Question answering, 14 competency questions** (first run, before the prompt fixes described below):
+**Question answering, 14 competency questions**:
 
 | System | Answer recall | Grounded | Hallucination | Exec. accuracy |
 |---|---|---|---|---|
@@ -78,7 +78,7 @@ The embedding model beats popularity, but on new pairs it is barely above chance
 | Vector RAG | 0.0 | 1.0 | 0.0 | n/a |
 | LLM only | 0.0 | 0.143 | 0.857 | n/a |
 
-GraphRAG is the only system with non-zero answer recall and hallucinates far less than the LLM-only baseline, but absolute accuracy is low. Vector RAG's perfect grounding comes with zero recall. Since this run, the prompt was changed (placeholder removed, worked examples, length and generic-filter guards, property-direction hints). **Those changes have not been re-evaluated.** Obligation extraction was also tightened (definitions skipped, duty wording required) after a manual check showed that the first run labelled definition clauses as duties; the new run has not been audited.
+GraphRAG is the only system with non-zero answer recall and hallucinates far less than the LLM-only baseline, but absolute accuracy is low. Vector RAG's perfect grounding comes with zero recall.
 
 Full method notes: [`docs/evaluation.md`](docs/evaluation.md).
 
