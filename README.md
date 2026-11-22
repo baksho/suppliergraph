@@ -4,7 +4,7 @@
 
 SupplierGraph is a portfolio project that covers the full knowledge-graph life cycle on real data: ontology design, R2RML integration, entity resolution, SHACL validation, rule-based reasoning, KG embeddings, text-to-SPARQL question answering with grounding checks, a REST API and a web UI.
 
-> **Read this first.** This is a research/portfolio prototype run on a *sample* of the data (20,000 tenders). Sanction matches and exposure flags are **leads for human review, not findings**. The evaluation numbers below are modest on purpose: they are reported as measured, including the weak ones. Check the licence of every data source before reuse (see [Data](#data-and-licences)).
+> This is a research/portfolio prototype run on a *sample* of the data (20,000 tenders). Sanction matches and exposure flags are **leads for human review, not findings**. The evaluation numbers below are modest on purpose: they are reported as measured, including the weak ones. Check the licence of every data source before reuse (see [Data](#data-and-licences)).
 
 ---
 
