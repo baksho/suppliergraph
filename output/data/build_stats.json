@@ -1,0 +1,11 @@
+{
+  "quads_materialized": 274682,
+  "inferred_triples": 120591,
+  "rules": {
+    "derived_ultimate_parent": 100,
+    "contracted_with": 1623,
+    "supplies_category": 3222,
+    "sanction_exposure": 42
+  },
+  "triples_total": 400532
+}

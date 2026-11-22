@@ -1,0 +1,701 @@
+{
+  "slots": {
+    "top_buyer": "DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16)",
+    "top_supplier": "Taxi Hillmann GmbH",
+    "top_category": "Construction work",
+    "grouped_entity": "Stadtwerke D\u00fcsseldorf AG",
+    "flagged_entity": "Aktiengesellschaft"
+  },
+  "skipped": [],
+  "results": [
+    {
+      "id": "sh-01",
+      "type": "single-hop",
+      "system": "llm_only",
+      "question": "Which suppliers have been awarded contracts by DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16)?",
+      "answer": "I'm not aware of the specific contracts awarded by DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16). As a procurement analyst, I would need access to the company's procurement database or specific contract information to provide an accurate answer. Can you provide more context or clarify which contracts you are referring to?",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 8
+      }
+    },
+    {
+      "id": "sh-01",
+      "type": "single-hop",
+      "system": "vector_rag",
+      "question": "Which suppliers have been awarded contracts by DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16)?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 8
+      }
+    },
+    {
+      "id": "sh-01",
+      "type": "single-hop",
+      "system": "graphrag",
+      "question": "Which suppliers have been awarded contracts by DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16)?",
+      "answer": "Based on the evidence, the following suppliers have been awarded contracts by DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16):\n\n- Volumenvertrag (VolV) Weichen mit Gleisen, Region S\u00fcd der DB InfraGO AG (2027 - 2030) - Netze N\u00fcrnberg, Regensburg und W\u00fcrzburg [D2, F13, F14, F15, F16]\n- NaKorid - Isoliersto\u00dfreparaturverfahren [D3, F17, F18, F19, F20, F23, F24]\n\nNote that the evidence does not contain information about the actual suppliers awarded the contracts, only the contracts themselves.",
+      "sparql": "PREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX sg: <http://example.org/schema/>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n\nSELECT DISTINCT ?s\nWHERE {\n  ?s sg:legalName ?name .\n  FILTER(CONTAINS(LCASE(STR(?name)), \"db infrago ag\")).\n  ?s sg:awardedTo ?supplier .\n  ?supplier sg:legalName ?supplierName .\n  FILTER(CONTAINS(LCASE(STR(?supplierName)), \"bukr 16\")).\n}\nLIMIT 200",
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 8,
+        "valid_query": true,
+        "attempts": 2,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    },
+    {
+      "id": "sh-02",
+      "type": "single-hop",
+      "system": "llm_only",
+      "question": "How many tenders has DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16) issued?",
+      "answer": "I'm not aware of the specific information regarding the number of tenders issued by DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16). I would recommend checking their official website or a reliable procurement database for the most accurate and up-to-date information.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 1
+      }
+    },
+    {
+      "id": "sh-02",
+      "type": "single-hop",
+      "system": "vector_rag",
+      "question": "How many tenders has DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16) issued?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 1
+      }
+    },
+    {
+      "id": "sh-02",
+      "type": "single-hop",
+      "system": "graphrag",
+      "question": "How many tenders has DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16) issued?",
+      "answer": "DB InfraGO AG \u2013 Gesch\u00e4ftsbereich Fahrweg (Bukr 16) has issued 4 tenders: \n- Ersatzneubau Br\u00fccke Gadewitz [F13]\n- Volumenvertrag (VolV) Weichen mit Gleisen [F13]\n- Volumenvertrag (VolV) Weichen mit Gleisen [F14]\n- Volumenvertrag (VolV) Weichen mit Gleisen [F15]\n- Volumenvertrag (VolV) Weichen mit Gleisen [F16]\n- NaKorid - Isoliersto\u00dfreparaturverfahren [F23]\n- NaKorid - Isoliersto\u00dfreparaturverfahren [F24]",
+      "sparql": "PREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX sg: <http://example.org/schema/>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT (COUNT(DISTINCT ?t) AS ?count)\nWHERE {\n  ?t a sg:Tender.\n  ?t sg:issuedBy ?b.\n  ?b sg:legalName ?n.\n  FILTER(CONTAINS(LCASE(STR(?n)), \"db infra go ag \u2013 gesch\u00e4ftsbereich fahrweg (bukr 16)\"))\n}\nLIMIT 200",
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 1.0,
+        "gold_rows": 1,
+        "valid_query": true,
+        "attempts": 2,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    },
+    {
+      "id": "sh-03",
+      "type": "single-hop",
+      "system": "llm_only",
+      "question": "In which country is Taxi Hillmann GmbH registered?",
+      "answer": "I couldn't find any information on Taxi Hillmann GmbH. Can you provide more context or details?",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": NaN,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 0
+      }
+    },
+    {
+      "id": "sh-03",
+      "type": "single-hop",
+      "system": "vector_rag",
+      "question": "In which country is Taxi Hillmann GmbH registered?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": NaN,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 0
+      }
+    },
+    {
+      "id": "sh-03",
+      "type": "single-hop",
+      "system": "graphrag",
+      "question": "In which country is Taxi Hillmann GmbH registered?",
+      "answer": "There is no information about Taxi Hillmann GmbH in the provided evidence.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": NaN,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 0,
+        "valid_query": false,
+        "attempts": 3,
+        "exec_accuracy": false,
+        "exec_recall": NaN
+      }
+    },
+    {
+      "id": "sh-04",
+      "type": "single-hop",
+      "system": "llm_only",
+      "question": "What is the total awarded value for Taxi Hillmann GmbH?",
+      "answer": "I'm not aware of any information about Taxi Hillmann GmbH. Can you provide more context or details about the company or the procurement you are referring to?",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 1
+      }
+    },
+    {
+      "id": "sh-04",
+      "type": "single-hop",
+      "system": "vector_rag",
+      "question": "What is the total awarded value for Taxi Hillmann GmbH?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 1
+      }
+    },
+    {
+      "id": "sh-04",
+      "type": "single-hop",
+      "system": "graphrag",
+      "question": "What is the total awarded value for Taxi Hillmann GmbH?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": "PREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX sg: <http://example.org/schema/>\nSELECT (SUM(?value) AS ?totalValue)\nWHERE {\n  ?e sg:legalName ?n .\n  FILTER(CONTAINS(LCASE(STR(?n)), \"taxi hillmann gmbh\")).\n  ?award sg:awardedTo ?supplier .\n  ?supplier sg:lei ?lei .\n  ?award sg:awardedTo ?supplier .\n  ?award sg:valueAmount ?value .\n  FILTER(?e = ?supplier)\n} GROUP BY ?e\nLIMIT 200",
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 1,
+        "valid_query": true,
+        "attempts": 2,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    },
+    {
+      "id": "sh-05",
+      "type": "single-hop",
+      "system": "llm_only",
+      "question": "Which tenders require ISO 9001?",
+      "answer": "ISO 9001 is a quality management standard. It's often required for tenders in industries where quality is critical, such as:\n\n1. Aerospace and defense\n2. Automotive\n3. Healthcare and medical devices\n4. Food and beverage\n5. Pharmaceuticals\n6. Construction (especially for large-scale projects)\n\nHowever, it's essential to note that the specific requirements may vary depending on the tender and the client's industry standards. I would recommend checking the tender documents or contacting the client to confirm their requirements.\n\nAdditionally, some government contracts may also require ISO 9001 certification.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 1
+      }
+    },
+    {
+      "id": "sh-05",
+      "type": "single-hop",
+      "system": "vector_rag",
+      "question": "Which tenders require ISO 9001?",
+      "answer": "[D1] requires ISO 9000/9001 [D1].\n[D3] requires DIN EN ISO 9001:2015 [D3].",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 1.0,
+        "gold_rows": 1
+      }
+    },
+    {
+      "id": "sh-05",
+      "type": "single-hop",
+      "system": "graphrag",
+      "question": "Which tenders require ISO 9001?",
+      "answer": "Narkoseger\u00e4te Worms [F3] and Qualifizierungssystem Aktivkohlereaktivierung Stadtwerke D\u00fcsseldorf AG [F9] and Kalibrierung Mess- & Pr\u00fcfmittel (DLR-IKN) [F17] require ISO 9001.",
+      "sparql": "PREFIX sg: <https://suppliergraph.example/ontology#>\nPREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nSELECT ?t\nWHERE {\n  ?t a sg:Tender ;\n      sg:requiresStandard ?s .\n  FILTER(CONTAINS(LCASE(STR(?s)), \"iso 9001\"))\n}\nLIMIT 200",
+      "metrics": {
+        "answer_recall": 1.0,
+        "grounded": true,
+        "citation_coverage": 1.0,
+        "gold_rows": 1,
+        "valid_query": true,
+        "attempts": 2,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    },
+    {
+      "id": "mh-01",
+      "type": "multi-hop",
+      "system": "llm_only",
+      "question": "Who is the ultimate parent company of Stadtwerke D\u00fcsseldorf AG?",
+      "answer": "I'm not aware of the current ownership structure of Stadtwerke D\u00fcsseldorf AG.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 1
+      }
+    },
+    {
+      "id": "mh-01",
+      "type": "multi-hop",
+      "system": "vector_rag",
+      "question": "Who is the ultimate parent company of Stadtwerke D\u00fcsseldorf AG?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 1
+      }
+    },
+    {
+      "id": "mh-01",
+      "type": "multi-hop",
+      "system": "graphrag",
+      "question": "Who is the ultimate parent company of Stadtwerke D\u00fcsseldorf AG?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 1,
+        "valid_query": false,
+        "attempts": 3,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    },
+    {
+      "id": "mh-02",
+      "type": "multi-hop",
+      "system": "llm_only",
+      "question": "Which companies belong to the same corporate group as Stadtwerke D\u00fcsseldorf AG?",
+      "answer": "I'm not familiar with Stadtwerke D\u00fcsseldorf AG's corporate group structure. Can you provide more context or information about Stadtwerke D\u00fcsseldorf AG?",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 1
+      }
+    },
+    {
+      "id": "mh-02",
+      "type": "multi-hop",
+      "system": "vector_rag",
+      "question": "Which companies belong to the same corporate group as Stadtwerke D\u00fcsseldorf AG?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 1
+      }
+    },
+    {
+      "id": "mh-02",
+      "type": "multi-hop",
+      "system": "graphrag",
+      "question": "Which companies belong to the same corporate group as Stadtwerke D\u00fcsseldorf AG?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": "PREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX sg: <http://example.org/schema/>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?e\nWHERE {\n  ?e sg:legalName ?n .\n  FILTER(CONTAINS(LCASE(STR(?n)), \"stadtwerke d\u00fcsseldorf ag\")).\n  ?e sg:hasUltimateParent ?parent .\n  ?parent sg:legalName ?p .\n  FILTER(CONTAINS(LCASE(STR(?p)), \"stadtwerke d\u00fcsseldorf ag\")).\n  FILTER(?e != ?parent).\n  FILTER(?e != ?p).\n  ?parent sg:hasDirectParent ?e .\n}\nLIMIT 200",
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 1,
+        "valid_query": true,
+        "attempts": 3,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    },
+    {
+      "id": "mh-03",
+      "type": "multi-hop",
+      "system": "llm_only",
+      "question": "Which suppliers have supplied the category 'Construction work' or any of its subcategories?",
+      "answer": "I'd need access to our procurement database to provide an accurate list. However, I can suggest some possible suppliers that may have supplied 'Construction work' or its subcategories in the past. \n\nPlease note that this is not an exhaustive list and may not be up-to-date. Some possible suppliers include:\n\n- Main contractors like Vinci, Bouygues, or Skanska\n- Specialist contractors like Mott MacDonald, Jacobs, or AECOM\n- Local construction companies that may have partnered with larger firms\n\nTo provide a more accurate list, I would need to access our procurement database or receive a list of suppliers from our procurement team.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 609
+      }
+    },
+    {
+      "id": "mh-03",
+      "type": "multi-hop",
+      "system": "vector_rag",
+      "question": "Which suppliers have supplied the category 'Construction work' or any of its subcategories?",
+      "answer": "Based on the evidence, the following suppliers have supplied the category 'Construction work' or its subcategories:\n\n- The supplier for the tender [D2] External technical expert road and bridge construction, Lot 1 (Africa) is expected to accompany and monitor various partner projects in road construction, rural roads, and rural/municipal infrastructure [D2].\n- The supplier for the tender [D1] 81322998-Development of a project pipeline for the CAFI Cameroon Partnership and related activities is not explicitly mentioned as a construction supplier, but the tender is related to the implementation of the second phase of Cameroon's vision covering the period 2020-2030, which includes infrastructure development [D1].\n- The supplier for the tender [D3] Faquir Deformable Mirror is not a construction supplier [D3].\n- The supplier for the tender [D4] Rectangular blind flanges for the focal plane chambers of the SFRS is not a construction supplier [D4].\n\nThe knowledge graph does not contain enough information to answer which specific suppliers have supplied the category 'Construction work' or its subcategories.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.5,
+        "gold_rows": 609
+      }
+    },
+    {
+      "id": "mh-03",
+      "type": "multi-hop",
+      "system": "graphrag",
+      "question": "Which suppliers have supplied the category 'Construction work' or any of its subcategories?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": "PREFIX sg: <https://suppliergraph.example/ontology#>\nPREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nSELECT ?s\nWHERE {\n  ?s sg:suppliesCategory ?c .\n  ?c skos:broader* ?sub .\n  FILTER (CONTAINS(LCASE(STR(?sub)), \"construction\") || CONTAINS(LCASE(STR(?c)), \"construction\"))\n}\nLIMIT 200",
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 609,
+        "valid_query": true,
+        "attempts": 2,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    },
+    {
+      "id": "mh-04",
+      "type": "multi-hop",
+      "system": "llm_only",
+      "question": "Which buyers have contracted with any company of the corporate group of Stadtwerke D\u00fcsseldorf AG?",
+      "answer": "I'm not aware of the specific contracts or buyers associated with Stadtwerke D\u00fcsseldorf AG's corporate group. However, I can suggest some possible sources where you may be able to find this information:\n\n1. Public procurement databases: Websites like Tenders Electronic Daily (TED) or the European Union's Tenders Electronic Daily database may have information on contracts awarded to companies within the Stadtwerke D\u00fcsseldorf AG corporate group.\n2. Company website: You can check the Stadtwerke D\u00fcsseldorf AG website for information on their procurement processes, contracts, and suppliers.\n3. Official government websites: Government websites in Germany or the European Union may have information on public procurement contracts awarded to companies within the Stadtwerke D\u00fcsseldorf AG corporate group.\n\nIf you could provide more context or clarify what you are looking for, I may be able to provide more specific guidance.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": NaN,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 0
+      }
+    },
+    {
+      "id": "mh-04",
+      "type": "multi-hop",
+      "system": "vector_rag",
+      "question": "Which buyers have contracted with any company of the corporate group of Stadtwerke D\u00fcsseldorf AG?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": NaN,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 0
+      }
+    },
+    {
+      "id": "mh-04",
+      "type": "multi-hop",
+      "system": "graphrag",
+      "question": "Which buyers have contracted with any company of the corporate group of Stadtwerke D\u00fcsseldorf AG?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": "PREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX sg: <http://example.org/schema/>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT DISTINCT ?buyer\nWHERE {\n  ?buyer sg:contractedWith ?supplier.\n  ?supplier sg:hasUltimateParent ?parent.\n  ?parent sg:legalName ?name.\n  FILTER(CONTAINS(LCASE(STR(?name)), \"stadtwerke\")).\n}\nLIMIT 200",
+      "metrics": {
+        "answer_recall": NaN,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 0,
+        "valid_query": true,
+        "attempts": 3,
+        "exec_accuracy": true,
+        "exec_recall": NaN
+      }
+    },
+    {
+      "id": "ag-01",
+      "type": "aggregation",
+      "system": "llm_only",
+      "question": "Which three suppliers have the highest total award value?",
+      "answer": "To provide the answer, I would need access to the procurement data. However, I can guide you through the steps to find this information.\n\nTypically, I would use a procurement system or a database to extract the required data. I would filter the data by supplier and sort it by total award value in descending order. \n\nOnce I have the data, I can provide the top three suppliers with the highest total award value. However, without access to the data, I'm unable to provide the exact answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 3
+      }
+    },
+    {
+      "id": "ag-01",
+      "type": "aggregation",
+      "system": "vector_rag",
+      "question": "Which three suppliers have the highest total award value?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 3
+      }
+    },
+    {
+      "id": "ag-01",
+      "type": "aggregation",
+      "system": "graphrag",
+      "question": "Which three suppliers have the highest total award value?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 3,
+        "valid_query": false,
+        "attempts": 3,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    },
+    {
+      "id": "ag-02",
+      "type": "aggregation",
+      "system": "llm_only",
+      "question": "How many awards were made in each year?",
+      "answer": "I'd need more context about what awards you're referring to. Are you asking about awards made in a specific procurement process or industry?",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 10
+      }
+    },
+    {
+      "id": "ag-02",
+      "type": "aggregation",
+      "system": "vector_rag",
+      "question": "How many awards were made in each year?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 10
+      }
+    },
+    {
+      "id": "ag-02",
+      "type": "aggregation",
+      "system": "graphrag",
+      "question": "How many awards were made in each year?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": "PREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX sg: <http://example.org/schema/>\nSELECT DISTINCT ?year ?count\nWHERE {\n  ?award sg:awardDate ?date .\n  BIND(YEAR(?date) AS ?year) .\n  BIND(COUNT(DISTINCT ?award) AS ?count) .\n  FILTER (?year >= 1900 && ?year <= 2100) .\n  FILTER(CONTAINS(LCASE(STR(?award)), \"award\")).\n}\nLIMIT 200",
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 10,
+        "valid_query": true,
+        "attempts": 2,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    },
+    {
+      "id": "co-01",
+      "type": "compliance",
+      "system": "llm_only",
+      "question": "Which entities are flagged for possible sanction exposure and need review?",
+      "answer": "To provide an accurate answer, I would need more information about the specific entities and the sanction lists you are referencing (e.g. OFAC, EU, UN). Can you provide more context or clarify which sanction lists you are using for review?",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 7
+      }
+    },
+    {
+      "id": "co-01",
+      "type": "compliance",
+      "system": "vector_rag",
+      "question": "Which entities are flagged for possible sanction exposure and need review?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 7
+      }
+    },
+    {
+      "id": "co-01",
+      "type": "compliance",
+      "system": "graphrag",
+      "question": "Which entities are flagged for possible sanction exposure and need review?",
+      "answer": "Based on the evidence, there is no information about sanction lists or entities flagged for possible sanction exposure. The knowledge graph does not contain enough information to answer.",
+      "sparql": "PREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX sg: <http://example.org/schema/>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT DISTINCT ?flaggedEntity\nWHERE {\n  ?exposureFlag a sg:ExposureFlag ;\n    sg:reviewStatus ?reviewStatus .\n  FILTER(?reviewStatus = \"needs_review\")\n  ?flaggedEntity sg:flaggedEntity ?exposureFlag .\n  FILTER(CONTAINS(LCASE(STR(?flaggedEntity)), \"name in lower case\") ||\n         CONTAINS(LCASE(STR(?flaggedEntity)), \"recorded name in lower case\"))\n}\nLIMIT 200",
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 7,
+        "valid_query": true,
+        "attempts": 2,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    },
+    {
+      "id": "co-02",
+      "type": "compliance",
+      "system": "llm_only",
+      "question": "Which entities are exposed to a sanction match through a parent company rather than directly?",
+      "answer": "Entities exposed to a sanction match through a parent company rather than directly are typically:\n\n1. Subsidiaries\n2. Joint ventures\n3. Affiliates\n4. Partnerships\n5. Wholly-owned entities\n\nThese entities may be indirectly exposed to sanctions due to their relationship with the sanctioned parent company.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": NaN,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 0
+      }
+    },
+    {
+      "id": "co-02",
+      "type": "compliance",
+      "system": "vector_rag",
+      "question": "Which entities are exposed to a sanction match through a parent company rather than directly?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": NaN,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 0
+      }
+    },
+    {
+      "id": "co-02",
+      "type": "compliance",
+      "system": "graphrag",
+      "question": "Which entities are exposed to a sanction match through a parent company rather than directly?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": "PREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX sg: <http://example.org/schema/>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT DISTINCT ?flaggedEntity\nWHERE {\n  ?flaggedEntity sg:hasUltimateParent ?parent .\n  ?flaggedEntity sg:hasAncestor ?parent .\n  ?flaggedEntity sg:flaggedEntity ?flag .\n  ?flag sg:viaEntity ?parent .\n  ?flag sg:viaMatch ?match .\n  ?match sg:matchedEntity ?flaggedEntity .\n  ?flaggedEntity sg:legalName ?name .\n  FILTER(CONTAINS(LCASE(STR(?name)), \"exposed\"))\n}\nLIMIT 200",
+      "metrics": {
+        "answer_recall": NaN,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 0,
+        "valid_query": true,
+        "attempts": 3,
+        "exec_accuracy": true,
+        "exec_recall": NaN
+      }
+    },
+    {
+      "id": "co-03",
+      "type": "compliance",
+      "system": "llm_only",
+      "question": "Which obligations apply to suppliers?",
+      "answer": "As a procurement analyst, I can identify the following obligations that typically apply to suppliers:\n\n1. **Quality and Performance**: Suppliers are expected to meet the agreed-upon quality and performance standards.\n2. **Delivery and Timeliness**: Suppliers must deliver goods or services on time and in accordance with the agreed-upon schedule.\n3. **Price and Payment Terms**: Suppliers must honor the agreed-upon prices and payment terms.\n4. **Intellectual Property and Confidentiality**: Suppliers may be required to protect the buyer's intellectual property and maintain confidentiality.\n5. **Compliance with Laws and Regulations**: Suppliers must comply with all applicable laws and regulations, including those related to labor, environment, and health and safety.\n6. **Warranty and Liability**: Suppliers may be required to provide warranties and assume liability for defects or non-conformities.\n7. **Record Keeping and Reporting**: Suppliers may be required to maintain accurate records and provide regular reports on their performance.\n\nPlease note that these obligations may vary depending on the specific contract or agreement between the buyer and supplier.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": false,
+        "citation_coverage": 0.0,
+        "gold_rows": 149
+      }
+    },
+    {
+      "id": "co-03",
+      "type": "compliance",
+      "system": "vector_rag",
+      "question": "Which obligations apply to suppliers?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": null,
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 149
+      }
+    },
+    {
+      "id": "co-03",
+      "type": "compliance",
+      "system": "graphrag",
+      "question": "Which obligations apply to suppliers?",
+      "answer": "The knowledge graph does not contain enough information to answer.",
+      "sparql": "PREFIX id: <https://suppliergraph.example/id/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX org: <http://www.w3.org/ns/org#>\nPREFIX dcat: <http://www.w3.org/ns/dcat#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX sg: <http://example.org/schema/>\nSELECT DISTINCT ?o\nWHERE {\n  ?o sg:appliesToRole sg:Supplier.\n  ?o sg:appliesToRole ?role.\n  FILTER(CONTAINS(LCASE(?role), \"supplier\")).\n}\nLIMIT 200",
+      "metrics": {
+        "answer_recall": 0.0,
+        "grounded": true,
+        "citation_coverage": 0.0,
+        "gold_rows": 149,
+        "valid_query": true,
+        "attempts": 2,
+        "exec_accuracy": false,
+        "exec_recall": 0.0
+      }
+    }
+  ],
+  "summary": {
+    "graphrag": {
+      "n": 14,
+      "answer_recall": 0.091,
+      "grounded_rate": 0.786,
+      "citation_coverage": 0.143,
+      "hallucination_rate": 0.214,
+      "valid_query_rate": 0.786,
+      "exec_accuracy": 0.143,
+      "exec_recall": 0.0,
+      "mean_attempts": 2.429,
+      "by_type": {
+        "aggregation": {
+          "n": 2,
+          "exec_accuracy": 0.0
+        },
+        "compliance": {
+          "n": 3,
+          "exec_accuracy": 0.333
+        },
+        "multi-hop": {
+          "n": 4,
+          "exec_accuracy": 0.25
+        },
+        "single-hop": {
+          "n": 5,
+          "exec_accuracy": 0.0
+        }
+      }
+    },
+    "llm_only": {
+      "n": 14,
+      "answer_recall": 0.0,
+      "grounded_rate": 0.143,
+      "citation_coverage": 0.0,
+      "hallucination_rate": 0.857
+    },
+    "vector_rag": {
+      "n": 14,
+      "answer_recall": 0.0,
+      "grounded_rate": 1.0,
+      "citation_coverage": 0.107,
+      "hallucination_rate": 0.0
+    }
+  }
+}
