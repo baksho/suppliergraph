@@ -1,0 +1,265 @@
+@prefix rr:      <http://www.w3.org/ns/r2rml#> .
+@prefix sg:      <https://suppliergraph.example/ontology#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix m:       <https://suppliergraph.example/mapping#> .
+
+# One R2RML mapping, two deployment modes:
+#   * materialised: Morph-KGC reads the relational staging DB and writes N-Quads for the triple store
+#   * virtual: Ontop answers SPARQL over the same DB (use scripts/strip_graphs.py first, see docs/design.md)
+# Every triples map writes to the named graph of the data product it comes from (lineage).
+
+# ----------------------------------------------------------------- countries
+m:Country a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "v_country" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/country/{code}" ;
+        rr:class sg:Country ;
+        rr:graph <https://suppliergraph.example/dp/gleif> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:isoCode ; rr:objectMap [ rr:column "code" ] ] .
+
+# ------------------------------------------------------ legal entities (GLEIF)
+m:EntityGleif a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "v_entity_gleif" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/entity/{entity_key}" ;
+        rr:class sg:LegalEntity ;
+        rr:graph <https://suppliergraph.example/dp/gleif> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:legalName ; rr:objectMap [ rr:column "legal_name" ] ] ;
+    rr:predicateObjectMap [ rr:predicate sg:lei ; rr:objectMap [ rr:column "lei" ] ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:registeredIn ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/country/{country}" ]
+    ] .
+
+m:ParentDirect a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery "SELECT child_key, parent_key FROM v_parent WHERE rel_type = 'DIRECT'" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/entity/{child_key}" ;
+        rr:graph <https://suppliergraph.example/dp/gleif> ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:hasDirectParent ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/entity/{parent_key}" ]
+    ] .
+
+m:ParentUltimate a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery "SELECT child_key, parent_key FROM v_parent WHERE rel_type = 'ULTIMATE'" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/entity/{child_key}" ;
+        rr:graph <https://suppliergraph.example/dp/gleif> ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:hasUltimateParent ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/entity/{parent_key}" ]
+    ] .
+
+# ----------------------------------------- parties from procurement records
+m:EntityParty a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "v_entity_party" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/entity/{entity_key}" ;
+        rr:class sg:LegalEntity ;
+        rr:graph <https://suppliergraph.example/dp/tenders> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:legalName ; rr:objectMap [ rr:column "legal_name" ] ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:registeredIn ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/country/{country}" ]
+    ] .
+
+m:Alias a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "v_alias" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/entity/{entity_key}" ;
+        rr:graph <https://suppliergraph.example/dp/tenders> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:recordedName ; rr:objectMap [ rr:column "alias" ] ] .
+
+# ------------------------------------------------------------------- CPV
+m:Cpv a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "cpv_code" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/cpv/{code}" ;
+        rr:class sg:ProductCategory ;
+        rr:graph <https://suppliergraph.example/dp/cpv> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate skos:notation ; rr:objectMap [ rr:column "code" ] ] ;
+    rr:predicateObjectMap [ rr:predicate skos:prefLabel ; rr:objectMap [ rr:column "label_en" ; rr:language "en" ] ] ;
+    rr:predicateObjectMap [ rr:predicate skos:prefLabel ; rr:objectMap [ rr:column "label_de" ; rr:language "de" ] ] ;
+    rr:predicateObjectMap [
+        rr:predicate skos:broader ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/cpv/{parent_code}" ]
+    ] .
+
+# ----------------------------------------------------- tenders and awards
+m:Tender a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "v_tender" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/tender/{tender_id}" ;
+        rr:class sg:Tender ;
+        rr:graph <https://suppliergraph.example/dp/tenders> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:title ; rr:objectMap [ rr:column "title" ] ] ;
+    rr:predicateObjectMap [ rr:predicate sg:description ; rr:objectMap [ rr:column "description" ] ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:publicationDate ;
+        rr:objectMap [ rr:column "publication_date" ; rr:datatype xsd:date ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:issuedBy ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/entity/{buyer_key}" ]
+    ] .
+
+m:Award a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "v_award" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/award/{award_id}" ;
+        rr:class sg:Award ;
+        rr:graph <https://suppliergraph.example/dp/tenders> ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:awardOf ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/tender/{tender_id}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:awardedTo ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/entity/{supplier_key}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:valueAmount ;
+        rr:objectMap [ rr:column "value_amount" ; rr:datatype xsd:decimal ]
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:valueCurrency ; rr:objectMap [ rr:column "currency" ] ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:awardDate ;
+        rr:objectMap [ rr:column "award_date" ; rr:datatype xsd:date ]
+    ] .
+
+m:TenderCpvDeclared a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery "SELECT tender_id, cpv_code FROM tender_cpv WHERE source = 'declared' AND tender_id IN (SELECT tender_id FROM v_tender) AND cpv_code IN (SELECT code FROM cpv_code)" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/tender/{tender_id}" ;
+        rr:graph <https://suppliergraph.example/dp/tenders> ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:hasDeclaredCategory ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/cpv/{cpv_code}" ]
+    ] .
+
+# --------------------------------------- extraction outputs (own named graph)
+m:TenderCpvLinked a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery "SELECT tender_id, cpv_code FROM tender_cpv WHERE source = 'linked' AND tender_id IN (SELECT tender_id FROM v_tender) AND cpv_code IN (SELECT code FROM cpv_code)" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/tender/{tender_id}" ;
+        rr:graph <https://suppliergraph.example/dp/extraction> ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:hasLinkedCategory ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/cpv/{cpv_code}" ]
+    ] .
+
+m:TenderRequirement a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery "SELECT tender_id, standard FROM tender_requirement WHERE tender_id IN (SELECT tender_id FROM v_tender)" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/tender/{tender_id}" ;
+        rr:graph <https://suppliergraph.example/dp/extraction> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:requiresStandard ; rr:objectMap [ rr:column "standard" ] ] .
+
+m:ExtractionRun a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery "SELECT run_id, started_at, method || ' / ' || model AS descr FROM extraction_run" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/activity/{run_id}" ;
+        rr:class sg:ExtractionActivity ;
+        rr:graph <https://suppliergraph.example/dp/extraction> ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate prov:startedAtTime ;
+        rr:objectMap [ rr:column "started_at" ; rr:datatype xsd:dateTime ]
+    ] ;
+    rr:predicateObjectMap [ rr:predicate rdfs:label ; rr:objectMap [ rr:column "descr" ] ] .
+
+m:Regulation a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "regulation" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/regulation/{reg_id}" ;
+        rr:class sg:Regulation ;
+        rr:graph <https://suppliergraph.example/dp/regulations> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate rdfs:label ; rr:objectMap [ rr:column "title" ] ] ;
+    rr:predicateObjectMap [ rr:predicate sg:celex ; rr:objectMap [ rr:column "celex" ] ] .
+
+m:Obligation a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "obligation" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/obligation/{obl_id}" ;
+        rr:class sg:Obligation ;
+        rr:graph <https://suppliergraph.example/dp/extraction> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:obligationText ; rr:objectMap [ rr:column "text" ] ] ;
+    rr:predicateObjectMap [ rr:predicate sg:article ; rr:objectMap [ rr:column "article" ] ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:confidence ;
+        rr:objectMap [ rr:column "confidence" ; rr:datatype xsd:double ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:extractedFrom ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/regulation/{reg_id}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate prov:wasGeneratedBy ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/activity/{run_id}" ]
+    ] .
+
+m:ObligationRoleBuyer a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery "SELECT obl_id FROM obligation WHERE applies_to_role IN ('buyer','both')" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/obligation/{obl_id}" ;
+        rr:graph <https://suppliergraph.example/dp/extraction> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:appliesToRole ; rr:object sg:Buyer ] .
+
+m:ObligationRoleSupplier a rr:TriplesMap ;
+    rr:logicalTable [ rr:sqlQuery "SELECT obl_id FROM obligation WHERE applies_to_role IN ('supplier','both')" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/obligation/{obl_id}" ;
+        rr:graph <https://suppliergraph.example/dp/extraction> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:appliesToRole ; rr:object sg:Supplier ] .
+
+# --------------------------------------------------------------- sanctions
+m:SanctionEntry a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "sanction_entry" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/sanction/{entry_id}" ;
+        rr:class sg:SanctionEntry ;
+        rr:graph <https://suppliergraph.example/dp/sanctions> ;
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:legalName ; rr:objectMap [ rr:column "name" ] ] .
+
+m:SanctionMatch a rr:TriplesMap ;
+    rr:logicalTable [ rr:tableName "v_sanction_match" ] ;
+    rr:subjectMap [
+        rr:template "https://suppliergraph.example/id/match/{match_id}" ;
+        rr:class sg:SanctionMatch ;
+        rr:graph <https://suppliergraph.example/dp/entity-resolution> ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:matchedEntity ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/entity/{entity_key}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:matchedEntry ;
+        rr:objectMap [ rr:template "https://suppliergraph.example/id/sanction/{entry_id}" ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sg:matchScore ;
+        rr:objectMap [ rr:column "score" ; rr:datatype xsd:double ]
+    ] ;
+    rr:predicateObjectMap [ rr:predicate sg:matchMethod ; rr:objectMap [ rr:column "method" ] ] ;
+    rr:predicateObjectMap [ rr:predicate sg:reviewStatus ; rr:objectMap [ rr:column "review_status" ] ] .

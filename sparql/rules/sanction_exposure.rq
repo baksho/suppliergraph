@@ -1,0 +1,24 @@
+# Sanction exposure: an entity is flagged if it, or an entity in its consolidation chain (up to
+# {max_hops} hops), has a sanction match with score >= {threshold} that has not been rejected.
+# A flag is a lead for human review, never a finding.
+PREFIX sg: <https://suppliergraph.example/ontology#>
+CONSTRUCT {
+  ?flag a sg:ExposureFlag ;
+        sg:flaggedEntity ?e ;
+        sg:viaEntity ?v ;
+        sg:viaMatch ?m ;
+        sg:hops ?hops ;
+        sg:reviewStatus "needs_review" .
+}
+WHERE {
+  {
+    SELECT ?e ?v ?m (MIN(?h) AS ?hops) WHERE {
+      ?m a sg:SanctionMatch ; sg:matchedEntity ?v ; sg:matchScore ?score .
+      FILTER(?score >= {threshold})
+      FILTER NOT EXISTS { ?m sg:reviewStatus "rejected" }
+      {hop_unions}
+    }
+    GROUP BY ?e ?v ?m
+  }
+  BIND(IRI(CONCAT("https://suppliergraph.example/id/exposure/", MD5(CONCAT(STR(?e), "|", STR(?m))))) AS ?flag)
+}

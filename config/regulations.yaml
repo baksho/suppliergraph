@@ -1,0 +1,6 @@
+regulations:
+  - id: EU-2014-24
+    title: "Richtlinie 2014/24/EU über die öffentliche Auftragsvergabe"
+    celex: 32014L0024
+    # Created with: python scripts/prepare_regulation.py <CELEX PDF> data/raw/regulation/dir_2014_24_de.txt
+    path: data/raw/regulation/dir_2014_24_de.txt

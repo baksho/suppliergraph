@@ -1,0 +1,131 @@
+@prefix sg:   <https://suppliergraph.example/ontology#> .
+@prefix sgs:  <https://suppliergraph.example/shapes#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Data-quality constraints. Severity "Violation" = must be fixed, "Warning" = should be fixed.
+# Run with: sg validate
+
+sgs:LegalEntityShape a sh:NodeShape ;
+    sh:targetClass sg:LegalEntity ;
+    sh:property [
+        sh:path sg:legalName ; sh:minCount 1 ; sh:datatype xsd:string ;
+        sh:message "Every legal entity needs a legal name." ;
+    ] ;
+    sh:property [
+        sh:path sg:lei ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:pattern "^[A-Z0-9]{18}[0-9]{2}$" ;
+        sh:message "LEI must be 18 alphanumeric characters followed by 2 check digits (ISO 17442)." ;
+    ] ;
+    sh:property [
+        sh:path sg:registeredIn ; sh:maxCount 1 ; sh:class sg:Country ;
+        sh:severity sh:Warning ;
+        sh:message "Registration country should be a single sg:Country." ;
+    ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "An entity must not be its own direct parent." ;
+        sh:select """
+            PREFIX sg: <https://suppliergraph.example/ontology#>
+            SELECT $this WHERE { $this sg:hasDirectParent $this . }
+        """ ;
+    ] .
+
+sgs:CountryShape a sh:NodeShape ;
+    sh:targetClass sg:Country ;
+    sh:property [
+        sh:path sg:isoCode ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:pattern "^[A-Z]{2}$" ;
+        sh:message "Country needs a two-letter upper-case ISO code." ;
+    ] .
+
+sgs:TenderShape a sh:NodeShape ;
+    sh:targetClass sg:Tender ;
+    sh:property [
+        sh:path sg:issuedBy ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "A tender must have exactly one issuing buyer." ;
+    ] ;
+    sh:property [
+        sh:path sg:title ; sh:minCount 1 ; sh:severity sh:Warning ;
+        sh:message "A tender should have a title." ;
+    ] ;
+    sh:property [
+        sh:path sg:publicationDate ; sh:datatype xsd:date ; sh:maxCount 1 ;
+        sh:severity sh:Warning ;
+    ] ;
+    sh:property [
+        sh:path sg:hasCategory ; sh:class sg:ProductCategory ;
+        sh:message "Tender categories must be CPV concepts." ;
+    ] .
+
+sgs:AwardShape a sh:NodeShape ;
+    sh:targetClass sg:Award ;
+    sh:property [
+        sh:path sg:awardedTo ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "An award must have exactly one supplier." ;
+    ] ;
+    sh:property [
+        sh:path sg:awardOf ; sh:minCount 1 ; sh:maxCount 1 ; sh:class sg:Tender ;
+        sh:message "An award must belong to exactly one tender." ;
+    ] ;
+    sh:property [
+        sh:path sg:valueAmount ; sh:datatype xsd:decimal ; sh:minInclusive 0 ; sh:maxCount 1 ;
+        sh:message "Award value must be a non-negative decimal." ;
+    ] ;
+    sh:property [
+        sh:path sg:valueCurrency ; sh:pattern "^[A-Z]{3}$" ; sh:maxCount 1 ;
+        sh:message "Currency must be a 3-letter ISO 4217 code." ;
+    ] ;
+    sh:property [
+        sh:path sg:awardDate ; sh:datatype xsd:date ; sh:maxCount 1 ; sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Awards should carry a date (needed for temporal evaluation)." ;
+    ] .
+
+sgs:ProductCategoryShape a sh:NodeShape ;
+    sh:targetClass sg:ProductCategory ;
+    sh:property [
+        sh:path skos:notation ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[0-9]{8}$" ;
+        sh:message "CPV notation must be the 8-digit code without check digit." ;
+    ] ;
+    sh:property [
+        sh:path skos:prefLabel ; sh:minCount 1 ;
+        sh:message "Every CPV category needs a label." ;
+    ] .
+
+sgs:SanctionMatchShape a sh:NodeShape ;
+    sh:targetClass sg:SanctionMatch ;
+    sh:property [
+        sh:path sg:matchScore ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:double ; sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ;
+    ] ;
+    sh:property [ sh:path sg:matchedEntity ; sh:minCount 1 ; sh:maxCount 1 ; sh:class sg:LegalEntity ] ;
+    sh:property [ sh:path sg:matchedEntry  ; sh:minCount 1 ; sh:maxCount 1 ; sh:class sg:SanctionEntry ] ;
+    sh:property [ sh:path sg:matchMethod   ; sh:minCount 1 ] ;
+    sh:property [
+        sh:path sg:reviewStatus ; sh:minCount 1 ;
+        sh:in ( "needs_review" "confirmed" "rejected" ) ;
+        sh:message "Review status must be needs_review, confirmed or rejected." ;
+    ] .
+
+sgs:ObligationShape a sh:NodeShape ;
+    sh:targetClass sg:Obligation ;
+    sh:property [ sh:path sg:obligationText ; sh:minCount 1 ; sh:message "Obligation needs its source sentence." ] ;
+    sh:property [ sh:path sg:extractedFrom ; sh:minCount 1 ; sh:maxCount 1 ; sh:class sg:Regulation ] ;
+    sh:property [
+        sh:path sg:confidence ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:double ; sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ;
+    ] ;
+    sh:property [
+        sh:path prov:wasGeneratedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:class sg:ExtractionActivity ;
+        sh:message "Extracted facts must record the extraction activity (provenance)." ;
+    ] .
+
+sgs:ExposureFlagShape a sh:NodeShape ;
+    sh:targetClass sg:ExposureFlag ;
+    sh:property [ sh:path sg:flaggedEntity ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path sg:viaMatch ; sh:minCount 1 ] ;
+    sh:property [ sh:path sg:hops ; sh:minCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ] .

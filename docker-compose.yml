@@ -1,0 +1,25 @@
+# UNTESTED: written without a Docker daemon available. Treat the first `docker compose up` as a test run.
+services:
+  postgres:
+    image: postgres:16
+    environment: { POSTGRES_USER: sg, POSTGRES_PASSWORD: sg, POSTGRES_DB: staging }
+    volumes: [pgdata:/var/lib/postgresql/data]
+    ports: ["5432:5432"]
+  graphdb:               # optional remote triple store; the API also runs without it (SG_STORE=local)
+    image: ${GRAPHDB_IMAGE:-ontotext/graphdb:10.8.0}   # check the current tag and licence terms yourself
+    ports: ["7200:7200"]
+    volumes: [graphdb:/opt/graphdb/home]
+    profiles: ["graphdb"]
+  api:
+    build: .
+    environment:
+      SG_STAGING_URL: postgresql+psycopg://sg:sg@postgres:5432/staging
+      SG_STORE: ${SG_STORE:-local}
+      SG_SPARQL_QUERY_URL: http://graphdb:7200/repositories/suppliergraph
+      SG_SPARQL_UPDATE_URL: http://graphdb:7200/repositories/suppliergraph/statements
+      SG_SPARQL_STATEMENTS_URL: http://graphdb:7200/repositories/suppliergraph/statements
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    volumes: ["./data:/app/data", "./models:/app/models"]
+    ports: ["8000:8000"]
+    depends_on: [postgres]
+volumes: { pgdata: {}, graphdb: {} }

@@ -1,0 +1,58 @@
+# Source configuration: column mappings and (optional) download URLs.
+#
+# IMPORTANT: none of the column names or URLs below could be verified against the live
+# files when this repository was generated (the build sandbox had no access to the data hosts).
+# Run `sg data check <source> <file>` on each real file first; it reports missing columns and
+# lets you fix this file instead of the code. Verify each licence before use or redistribution.
+
+gleif:
+  landing_page: https://www.gleif.org/en/lei-data/gleif-golden-copy/download-the-golden-copy
+  # Level 1 = who is who (LEI-CDR concatenated file), Level 2 = who owns whom (relationship file)
+  level1_url: null          # fill in after checking the landing page; or place the file manually
+  level2_url: null
+  level1_path: data/raw/gleif/level1.csv     # .csv or a .zip holding one csv
+  level2_path: data/raw/gleif/level2.csv
+  countries: [DE, AT, CH, FR, NL, BE, LU, IT, ES, PL, SE, DK, FI, IE, CZ]   # filter at load time
+  level1_columns:
+    lei: "LEI"
+    legal_name: "Entity.LegalName"
+    legal_country: "Entity.LegalAddress.Country"
+    legal_jurisdiction: "Entity.LegalJurisdiction"
+    status: "Entity.EntityStatus"
+    category: "Entity.EntityCategory"
+  level2_columns:
+    child: "Relationship.StartNode.NodeID"
+    parent: "Relationship.EndNode.NodeID"
+    type: "Relationship.RelationshipType"
+    status: "Relationship.RelationshipStatus"
+  level2_type_map:
+    IS_DIRECTLY_CONSOLIDATED_BY: DIRECT
+    IS_ULTIMATELY_CONSOLIDATED_BY: ULTIMATE
+
+ocds:
+  # OCDS release packages / records / JSONL. Use a national OCDS publisher or a converted TED export.
+  # Parsing TED eForms XML directly is NOT implemented (see docs/data_sources.md).
+  paths: [data/raw/ocds]
+  source_name: ocds
+  lei_scheme: XI-LEI        # org-id scheme used for LEIs in OCDS party identifiers
+
+cpv:
+  landing_page: https://simap.ted.europa.eu/cpv
+  path: data/raw/cpv/cpv.csv     # prepared CSV, see docs/data_sources.md
+  columns:
+    code: "CODE"
+    label_en: "EN"
+    label_de: "DE"
+
+sanctions:
+  landing_page: https://www.opensanctions.org/datasets/
+  path: data/raw/sanctions/targets.simple.csv
+  schemas: [Company, Organization, LegalEntity]
+  columns:
+    id: "id"
+    schema: "schema"
+    name: "name"
+    aliases: "aliases"
+    countries: "countries"
+    dataset: "dataset"
+  alias_separator: ";"

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+ui/node_modules/
+ui/dist/
+data/*
+!data/.gitkeep
+models/*
+!models/.gitkeep
+.env

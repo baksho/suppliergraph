@@ -1,0 +1,5 @@
+id,schema,name,aliases,countries,datasets
+TEST-001,Company,Nordlicht International Holding Limited,Nordlicht Intl Holding,gb,test_list
+TEST-002,Company,Kestrel Shipping Company,,ru,test_list
+TEST-003,Person,Jane Q. Example,,us,test_list
+TEST-004,Organization,Rheinbau Maschinen,,de,test_list

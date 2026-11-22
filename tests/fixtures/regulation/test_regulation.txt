@@ -1,0 +1,7 @@
+TEST REGULATION (fictional text for unit tests)
+
+Article 1. Contracting authorities shall publish every award notice within thirty days of the award decision. The notice shall name the winning supplier and the contract value.
+
+Article 2. Suppliers must identify and assess adverse human rights impacts in their own operations and supply chains. Suppliers shall document the results of each assessment and make them available on request.
+
+Article 3. This Regulation enters into force on the day following its publication.

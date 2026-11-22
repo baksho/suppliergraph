@@ -1,0 +1,7 @@
+# Top of the chain of direct-parent links. Compared with the published ultimate parent in dq checks.
+PREFIX sg: <https://suppliergraph.example/ontology#>
+CONSTRUCT { ?e sg:derivedUltimateParent ?top }
+WHERE {
+  ?e sg:hasDirectParent+ ?top .
+  FILTER NOT EXISTS { ?top sg:hasDirectParent ?x }
+}

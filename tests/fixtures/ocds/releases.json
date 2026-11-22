@@ -1,0 +1,2583 @@
+{
+ "uri": "test://fixture",
+ "publisher": {
+  "name": "TEST FIXTURE"
+ },
+ "releases": [
+  {
+   "ocid": "ocds-test-0001",
+   "id": "0001-1",
+   "date": "2020-09-04T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-MM-0",
+     "name": "Main Medizintechnik GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0001",
+    "title": "Medizinische Geraete fuer die Klinik",
+    "description": "Lieferung medizinischer Geraete einschliesslich Wartung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "33100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0001-A",
+     "date": "2020-09-04T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-MM-0",
+       "name": "Main Medizintechnik GmbH"
+      }
+     ],
+     "value": {
+      "amount": 83743.93,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0002",
+   "id": "0002-1",
+   "date": "2020-02-08T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B0",
+    "name": "Stadt Beispielburg"
+   },
+   "parties": [
+    {
+     "id": "B0",
+     "name": "Stadt Beispielburg",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-RW-0",
+     "name": "Rheinwerk Systemhaus GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST00RW000000000005",
+      "legalName": "Rheinwerk Systemhaus GmbH"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0002",
+    "title": "Softwareentwicklung fuer Fachverfahren",
+    "description": "Entwicklung und Betrieb einer Fachanwendung, Anforderung: Zertifizierung nach ISO 27001.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72200000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0002-A",
+     "date": "2020-02-08T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-RW-0",
+       "name": "Rheinwerk Systemhaus GmbH"
+      }
+     ],
+     "value": {
+      "amount": 401608.2,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0003",
+   "id": "0003-1",
+   "date": "2020-10-02T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B0",
+    "name": "Stadt Beispielburg"
+   },
+   "parties": [
+    {
+     "id": "B0",
+     "name": "Stadt Beispielburg",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-HB-0",
+     "name": "Harz Bueromoebel GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0003",
+    "title": "Bueromoebel",
+    "description": "Lieferung von Moebeln und Bueromoebeln fuer Verwaltung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "39100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0003-A",
+     "date": "2020-10-02T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-HB-0",
+       "name": "Harz Bueromoebel GmbH"
+      }
+     ],
+     "value": {
+      "amount": 574950.81,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0004",
+   "id": "0004-1",
+   "date": "2020-03-10T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-HB-0",
+     "name": "Harz Bueromoebel GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0004",
+    "title": "Bueromoebel",
+    "description": "Lieferung von Moebeln und Bueromoebeln fuer Verwaltung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "39100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0004-A",
+     "date": "2020-03-10T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-HB-0",
+       "name": "Harz Bueromoebel GmbH"
+      }
+     ],
+     "value": {
+      "amount": 509865.11,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0005",
+   "id": "0005-1",
+   "date": "2020-11-07T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-ID-0",
+     "name": "Isar Digital SE",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST08ID000000000063",
+      "legalName": "Isar Digital SE"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0005",
+    "title": "Datenmigration und Datenhaltung",
+    "description": "Migration von Altdaten, Datendienste und Archivierung. ISO 9001 erforderlich.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72300000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0005-A",
+     "date": "2020-11-07T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-ID-0",
+       "name": "Isar Digital SE"
+      }
+     ],
+     "value": {
+      "amount": 531808.14,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0006",
+   "id": "0006-1",
+   "date": "2020-07-25T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-ID-1",
+     "name": "Isar Digital",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST08ID000000000063",
+      "legalName": "Isar Digital"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0006",
+    "title": "Softwareentwicklung fuer Fachverfahren",
+    "description": "Entwicklung und Betrieb einer Fachanwendung, Anforderung: Zertifizierung nach ISO 27001.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72200000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0006-A",
+     "date": "2020-07-25T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-ID-1",
+       "name": "Isar Digital"
+      }
+     ],
+     "value": {
+      "amount": 618751.98,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0007",
+   "id": "0007-1",
+   "date": "2020-12-25T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B2",
+    "name": "Universitaet Musterstadt"
+   },
+   "parties": [
+    {
+     "id": "B2",
+     "name": "Universitaet Musterstadt",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-NH-0",
+     "name": "Nordlicht Handels GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0007",
+    "title": "Medizinische Geraete fuer die Klinik",
+    "description": "Lieferung medizinischer Geraete einschliesslich Wartung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "33100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0007-A",
+     "date": "2020-12-25T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-NH-0",
+       "name": "Nordlicht Handels GmbH"
+      }
+     ],
+     "value": {
+      "amount": 719053.94,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0008",
+   "id": "0008-1",
+   "date": "2020-02-04T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B2",
+    "name": "Universitaet Musterstadt"
+   },
+   "parties": [
+    {
+     "id": "B2",
+     "name": "Universitaet Musterstadt",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-SR-1",
+     "name": "Spree Reinigung",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0008",
+    "title": "Unterhaltsreinigung",
+    "description": "Reinigungsdienste fuer Verwaltungsgebaeude, Gebaeudereinigung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "90910000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0008-A",
+     "date": "2020-02-04T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-SR-1",
+       "name": "Spree Reinigung"
+      }
+     ],
+     "value": {
+      "amount": 273385.23,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0009",
+   "id": "0009-1",
+   "date": "2021-11-03T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-AL-1",
+     "name": "Alster Logistik Aktiengesellschaft",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST03AL000000000009",
+      "legalName": "Alster Logistik Aktiengesellschaft"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0009",
+    "title": "Fahrdienste und Kurierleistungen",
+    "description": "Strassentransport von Aktenmaterial zwischen Standorten.",
+    "items": []
+   },
+   "awards": [
+    {
+     "id": "0009-A",
+     "date": "2021-11-03T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-AL-1",
+       "name": "Alster Logistik Aktiengesellschaft"
+      }
+     ],
+     "value": {
+      "amount": 391094.55,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0010",
+   "id": "0010-1",
+   "date": "2021-08-03T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B2",
+    "name": "Universitaet Musterstadt"
+   },
+   "parties": [
+    {
+     "id": "B2",
+     "name": "Universitaet Musterstadt",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-MM-1",
+     "name": "Main Medizintechnik",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0010",
+    "title": "Medizinische Geraete fuer die Klinik",
+    "description": "Lieferung medizinischer Geraete einschliesslich Wartung.",
+    "items": []
+   },
+   "awards": [
+    {
+     "id": "0010-A",
+     "date": "2021-08-03T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-MM-1",
+       "name": "Main Medizintechnik"
+      }
+     ],
+     "value": {
+      "amount": 530307.78,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0011",
+   "id": "0011-1",
+   "date": "2021-05-21T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B0",
+    "name": "Stadt Beispielburg"
+   },
+   "parties": [
+    {
+     "id": "B0",
+     "name": "Stadt Beispielburg",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-SR-0",
+     "name": "Spree Reinigung GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0011",
+    "title": "Unterhaltsreinigung",
+    "description": "Reinigungsdienste fuer Verwaltungsgebaeude, Gebaeudereinigung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "90910000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0011-A",
+     "date": "2021-05-21T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-SR-0",
+       "name": "Spree Reinigung GmbH"
+      }
+     ],
+     "value": {
+      "amount": 663420.21,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0012",
+   "id": "0012-1",
+   "date": "2021-08-12T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-NH-1",
+     "name": "Nordlicht Handels",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0012",
+    "title": "Medizinische Geraete fuer die Klinik",
+    "description": "Lieferung medizinischer Geraete einschliesslich Wartung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "33100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0012-A",
+     "date": "2021-08-12T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-NH-1",
+       "name": "Nordlicht Handels"
+      }
+     ],
+     "value": {
+      "amount": 39855.38,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0013",
+   "id": "0013-1",
+   "date": "2021-03-24T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B0",
+    "name": "Stadt Beispielburg"
+   },
+   "parties": [
+    {
+     "id": "B0",
+     "name": "Stadt Beispielburg",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-ID-0",
+     "name": "Isar Digital SE",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST08ID000000000063",
+      "legalName": "Isar Digital SE"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0013",
+    "title": "Datenmigration und Datenhaltung",
+    "description": "Migration von Altdaten, Datendienste und Archivierung. ISO 9001 erforderlich.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72300000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0013-A",
+     "date": "2021-03-24T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-ID-0",
+       "name": "Isar Digital SE"
+      }
+     ],
+     "value": {
+      "amount": 696045.03,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0014",
+   "id": "0014-1",
+   "date": "2021-09-09T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B0",
+    "name": "Stadt Beispielburg"
+   },
+   "parties": [
+    {
+     "id": "B0",
+     "name": "Stadt Beispielburg",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-HB-0",
+     "name": "Harz Bueromoebel GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0014",
+    "title": "Bueromoebel",
+    "description": "Lieferung von Moebeln und Bueromoebeln fuer Verwaltung.",
+    "items": []
+   },
+   "awards": [
+    {
+     "id": "0014-A",
+     "date": "2021-09-09T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-HB-0",
+       "name": "Harz Bueromoebel GmbH"
+      }
+     ],
+     "value": {
+      "amount": 415284.91,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0015",
+   "id": "0015-1",
+   "date": "2021-07-08T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-HB-1",
+     "name": "Harz B\u00fcrom\u00f6bel GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0015",
+    "title": "Bueromoebel",
+    "description": "Lieferung von Moebeln und Bueromoebeln fuer Verwaltung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "39100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0015-A",
+     "date": "2021-07-08T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-HB-1",
+       "name": "Harz B\u00fcrom\u00f6bel GmbH"
+      }
+     ],
+     "value": {
+      "amount": 620796.29,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0016",
+   "id": "0016-1",
+   "date": "2021-10-06T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-AL-0",
+     "name": "Alster Logistik AG",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST03AL000000000009",
+      "legalName": "Alster Logistik AG"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0016",
+    "title": "Fahrdienste und Kurierleistungen",
+    "description": "Strassentransport von Aktenmaterial zwischen Standorten.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "60100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0016-A",
+     "date": "2021-10-06T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-AL-0",
+       "name": "Alster Logistik AG"
+      }
+     ],
+     "value": {
+      "amount": 30615.49,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0017",
+   "id": "0017-1",
+   "date": "2022-10-11T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-RW-2",
+     "name": "Rheinwerk Systemhaus",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST00RW000000000005",
+      "legalName": "Rheinwerk Systemhaus"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0017",
+    "title": "Softwareentwicklung fuer Fachverfahren",
+    "description": "Entwicklung und Betrieb einer Fachanwendung, Anforderung: Zertifizierung nach ISO 27001.",
+    "items": []
+   },
+   "awards": [
+    {
+     "id": "0017-A",
+     "date": "2022-10-11T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-RW-2",
+       "name": "Rheinwerk Systemhaus"
+      }
+     ],
+     "value": {
+      "amount": 344943.14,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0018",
+   "id": "0018-1",
+   "date": "2022-02-16T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-RW-1",
+     "name": "RHEINWERK SYSTEMHAUS GMBH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST00RW000000000005",
+      "legalName": "RHEINWERK SYSTEMHAUS GMBH"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0018",
+    "title": "Datenmigration und Datenhaltung",
+    "description": "Migration von Altdaten, Datendienste und Archivierung. ISO 9001 erforderlich.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72300000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0018-A",
+     "date": "2022-02-16T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-RW-1",
+       "name": "RHEINWERK SYSTEMHAUS GMBH"
+      }
+     ],
+     "value": {
+      "amount": 371101.37,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0019",
+   "id": "0019-1",
+   "date": "2022-02-11T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B0",
+    "name": "Stadt Beispielburg"
+   },
+   "parties": [
+    {
+     "id": "B0",
+     "name": "Stadt Beispielburg",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-RW-0",
+     "name": "Rheinwerk Systemhaus GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST00RW000000000005",
+      "legalName": "Rheinwerk Systemhaus GmbH"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0019",
+    "title": "Softwareentwicklung fuer Fachverfahren",
+    "description": "Entwicklung und Betrieb einer Fachanwendung, Anforderung: Zertifizierung nach ISO 27001.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72200000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0019-A",
+     "date": "2022-02-11T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-RW-0",
+       "name": "Rheinwerk Systemhaus GmbH"
+      }
+     ],
+     "value": {
+      "amount": 407751.64,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0020",
+   "id": "0020-1",
+   "date": "2022-10-01T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-ID-0",
+     "name": "Isar Digital SE",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST08ID000000000063",
+      "legalName": "Isar Digital SE"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0020",
+    "title": "Softwareentwicklung fuer Fachverfahren",
+    "description": "Entwicklung und Betrieb einer Fachanwendung, Anforderung: Zertifizierung nach ISO 27001.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72200000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0020-A",
+     "date": "2022-10-01T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-ID-0",
+       "name": "Isar Digital SE"
+      }
+     ],
+     "value": {
+      "amount": 855074.91,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0021",
+   "id": "0021-1",
+   "date": "2022-10-12T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-EB-1",
+     "name": "Elbe Bauservice GmbH u. Co. KG",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST04EB000000000041",
+      "legalName": "Elbe Bauservice GmbH u. Co. KG"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0021",
+    "title": "Sanierung Verwaltungsgebaeude",
+    "description": "Bauarbeiten und Tiefbau, Nachweis ISO 14001 erwuenscht.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "45200000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0021-A",
+     "date": "2022-10-12T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-EB-1",
+       "name": "Elbe Bauservice GmbH u. Co. KG"
+      }
+     ],
+     "value": {
+      "amount": 860811.86,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0022",
+   "id": "0022-1",
+   "date": "2022-02-05T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-ID-1",
+     "name": "Isar Digital",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST08ID000000000063",
+      "legalName": "Isar Digital"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0022",
+    "title": "Datenmigration und Datenhaltung",
+    "description": "Migration von Altdaten, Datendienste und Archivierung. ISO 9001 erforderlich.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72300000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0022-A",
+     "date": "2022-02-05T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-ID-1",
+       "name": "Isar Digital"
+      }
+     ],
+     "value": {
+      "amount": 445774.5,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0023",
+   "id": "0023-1",
+   "date": "2022-04-17T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-MM-0",
+     "name": "Main Medizintechnik GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0023",
+    "title": "Medizinische Geraete fuer die Klinik",
+    "description": "Lieferung medizinischer Geraete einschliesslich Wartung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "33100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0023-A",
+     "date": "2022-04-17T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-MM-0",
+       "name": "Main Medizintechnik GmbH"
+      }
+     ],
+     "value": {
+      "amount": 474374.38,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0024",
+   "id": "0024-1",
+   "date": "2022-09-12T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B0",
+    "name": "Stadt Beispielburg"
+   },
+   "parties": [
+    {
+     "id": "B0",
+     "name": "Stadt Beispielburg",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-RW-2",
+     "name": "Rheinwerk Systemhaus",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST00RW000000000005",
+      "legalName": "Rheinwerk Systemhaus"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0024",
+    "title": "Datenmigration und Datenhaltung",
+    "description": "Migration von Altdaten, Datendienste und Archivierung. ISO 9001 erforderlich.",
+    "items": []
+   },
+   "awards": [
+    {
+     "id": "0024-A",
+     "date": "2022-09-12T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-RW-2",
+       "name": "Rheinwerk Systemhaus"
+      }
+     ],
+     "value": {
+      "amount": 763993.88,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0025",
+   "id": "0025-1",
+   "date": "2023-04-26T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B2",
+    "name": "Universitaet Musterstadt"
+   },
+   "parties": [
+    {
+     "id": "B2",
+     "name": "Universitaet Musterstadt",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-MM-0",
+     "name": "Main Medizintechnik GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0025",
+    "title": "Medizinische Geraete fuer die Klinik",
+    "description": "Lieferung medizinischer Geraete einschliesslich Wartung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "33100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0025-A",
+     "date": "2023-04-26T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-MM-0",
+       "name": "Main Medizintechnik GmbH"
+      }
+     ],
+     "value": {
+      "amount": 559640.84,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0026",
+   "id": "0026-1",
+   "date": "2023-01-01T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-HB-1",
+     "name": "Harz B\u00fcrom\u00f6bel GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0026",
+    "title": "Bueromoebel",
+    "description": "Lieferung von Moebeln und Bueromoebeln fuer Verwaltung.",
+    "items": []
+   },
+   "awards": [
+    {
+     "id": "0026-A",
+     "date": "2023-01-01T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-HB-1",
+       "name": "Harz B\u00fcrom\u00f6bel GmbH"
+      }
+     ],
+     "value": {
+      "amount": 332895.04,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0027",
+   "id": "0027-1",
+   "date": "2023-12-12T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-NH-1",
+     "name": "Nordlicht Handels",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0027",
+    "title": "Medizinische Geraete fuer die Klinik",
+    "description": "Lieferung medizinischer Geraete einschliesslich Wartung.",
+    "items": []
+   },
+   "awards": [
+    {
+     "id": "0027-A",
+     "date": "2023-12-12T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-NH-1",
+       "name": "Nordlicht Handels"
+      }
+     ],
+     "value": {
+      "amount": 413560.36,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0028",
+   "id": "0028-1",
+   "date": "2023-04-11T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-MM-0",
+     "name": "Main Medizintechnik GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0028",
+    "title": "Medizinische Geraete fuer die Klinik",
+    "description": "Lieferung medizinischer Geraete einschliesslich Wartung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "33100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0028-A",
+     "date": "2023-04-11T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-MM-0",
+       "name": "Main Medizintechnik GmbH"
+      }
+     ],
+     "value": {
+      "amount": 219624.33,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0029",
+   "id": "0029-1",
+   "date": "2023-11-04T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B2",
+    "name": "Universitaet Musterstadt"
+   },
+   "parties": [
+    {
+     "id": "B2",
+     "name": "Universitaet Musterstadt",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-RW-2",
+     "name": "Rheinwerk Systemhaus",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST00RW000000000005",
+      "legalName": "Rheinwerk Systemhaus"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0029",
+    "title": "Datenmigration und Datenhaltung",
+    "description": "Migration von Altdaten, Datendienste und Archivierung. ISO 9001 erforderlich.",
+    "items": []
+   },
+   "awards": [
+    {
+     "id": "0029-A",
+     "date": "2023-11-04T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-RW-2",
+       "name": "Rheinwerk Systemhaus"
+      }
+     ],
+     "value": {
+      "amount": 94605.07,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0030",
+   "id": "0030-1",
+   "date": "2023-06-03T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B1",
+    "name": "Landesamt fuer Verwaltungs-IT Musterland"
+   },
+   "parties": [
+    {
+     "id": "B1",
+     "name": "Landesamt fuer Verwaltungs-IT Musterland",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-EB-1",
+     "name": "Elbe Bauservice GmbH u. Co. KG",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST04EB000000000041",
+      "legalName": "Elbe Bauservice GmbH u. Co. KG"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0030",
+    "title": "Sanierung Verwaltungsgebaeude",
+    "description": "Bauarbeiten und Tiefbau, Nachweis ISO 14001 erwuenscht.",
+    "items": []
+   },
+   "awards": [
+    {
+     "id": "0030-A",
+     "date": "2023-06-03T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-EB-1",
+       "name": "Elbe Bauservice GmbH u. Co. KG"
+      }
+     ],
+     "value": {
+      "amount": 714439.18,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0031",
+   "id": "0031-1",
+   "date": "2023-03-05T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-HB-0",
+     "name": "Harz Bueromoebel GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0031",
+    "title": "Bueromoebel",
+    "description": "Lieferung von Moebeln und Bueromoebeln fuer Verwaltung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "39100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0031-A",
+     "date": "2023-03-05T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-HB-0",
+       "name": "Harz Bueromoebel GmbH"
+      }
+     ],
+     "value": {
+      "amount": 657822.83,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0032",
+   "id": "0032-1",
+   "date": "2023-09-05T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-NH-1",
+     "name": "Nordlicht Handels",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0032",
+    "title": "Bueromoebel",
+    "description": "Lieferung von Moebeln und Bueromoebeln fuer Verwaltung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "39100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0032-A",
+     "date": "2023-09-05T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-NH-1",
+       "name": "Nordlicht Handels"
+      }
+     ],
+     "value": {
+      "amount": 157202.93,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0033",
+   "id": "0033-1",
+   "date": "2024-04-01T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-ID-0",
+     "name": "Isar Digital SE",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST08ID000000000063",
+      "legalName": "Isar Digital SE"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0033",
+    "title": "Softwareentwicklung fuer Fachverfahren",
+    "description": "Entwicklung und Betrieb einer Fachanwendung, Anforderung: Zertifizierung nach ISO 27001.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72200000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0033-A",
+     "date": "2024-04-01T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-ID-0",
+       "name": "Isar Digital SE"
+      }
+     ],
+     "value": {
+      "amount": 747016.62,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0034",
+   "id": "0034-1",
+   "date": "2024-03-02T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B2",
+    "name": "Universitaet Musterstadt"
+   },
+   "parties": [
+    {
+     "id": "B2",
+     "name": "Universitaet Musterstadt",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-SR-1",
+     "name": "Spree Reinigung",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0034",
+    "title": "Unterhaltsreinigung",
+    "description": "Reinigungsdienste fuer Verwaltungsgebaeude, Gebaeudereinigung.",
+    "items": []
+   },
+   "awards": [
+    {
+     "id": "0034-A",
+     "date": "2024-03-02T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-SR-1",
+       "name": "Spree Reinigung"
+      }
+     ],
+     "value": {
+      "amount": 499030.43,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0035",
+   "id": "0035-1",
+   "date": "2024-09-17T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-MM-0",
+     "name": "Main Medizintechnik GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0035",
+    "title": "Medizinische Geraete fuer die Klinik",
+    "description": "Lieferung medizinischer Geraete einschliesslich Wartung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "33100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0035-A",
+     "date": "2024-09-17T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-MM-0",
+       "name": "Main Medizintechnik GmbH"
+      }
+     ],
+     "value": {
+      "amount": 488005.97,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0036",
+   "id": "0036-1",
+   "date": "2024-08-20T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B0",
+    "name": "Stadt Beispielburg"
+   },
+   "parties": [
+    {
+     "id": "B0",
+     "name": "Stadt Beispielburg",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-NH-0",
+     "name": "Nordlicht Handels GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0036",
+    "title": "Bueromoebel",
+    "description": "Lieferung von Moebeln und Bueromoebeln fuer Verwaltung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "39100000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0036-A",
+     "date": "2024-08-20T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-NH-0",
+       "name": "Nordlicht Handels GmbH"
+      }
+     ],
+     "value": {
+      "amount": 171665.11,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0037",
+   "id": "0037-1",
+   "date": "2024-01-08T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-RW-0",
+     "name": "Rheinwerk Systemhaus GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST00RW000000000005",
+      "legalName": "Rheinwerk Systemhaus GmbH"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0037",
+    "title": "Datenmigration und Datenhaltung",
+    "description": "Migration von Altdaten, Datendienste und Archivierung. ISO 9001 erforderlich.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72300000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0037-A",
+     "date": "2024-01-08T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-RW-0",
+       "name": "Rheinwerk Systemhaus GmbH"
+      }
+     ],
+     "value": {
+      "amount": 797240.48,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0038",
+   "id": "0038-1",
+   "date": "2024-02-15T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-RW-2",
+     "name": "Rheinwerk Systemhaus",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST00RW000000000005",
+      "legalName": "Rheinwerk Systemhaus"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0038",
+    "title": "Softwareentwicklung fuer Fachverfahren",
+    "description": "Entwicklung und Betrieb einer Fachanwendung, Anforderung: Zertifizierung nach ISO 27001.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "72200000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0038-A",
+     "date": "2024-02-15T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-RW-2",
+       "name": "Rheinwerk Systemhaus"
+      }
+     ],
+     "value": {
+      "amount": 44521.87,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0039",
+   "id": "0039-1",
+   "date": "2024-04-23T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-EB-1",
+     "name": "Elbe Bauservice GmbH u. Co. KG",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     },
+     "identifier": {
+      "scheme": "XI-LEI",
+      "id": "TEST04EB000000000041",
+      "legalName": "Elbe Bauservice GmbH u. Co. KG"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0039",
+    "title": "Sanierung Verwaltungsgebaeude",
+    "description": "Bauarbeiten und Tiefbau, Nachweis ISO 14001 erwuenscht.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "45200000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0039-A",
+     "date": "2024-04-23T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-EB-1",
+       "name": "Elbe Bauservice GmbH u. Co. KG"
+      }
+     ],
+     "value": {
+      "amount": 466821.64,
+      "currency": "EUR"
+     }
+    }
+   ]
+  },
+  {
+   "ocid": "ocds-test-0040",
+   "id": "0040-1",
+   "date": "2024-07-15T10:00:00Z",
+   "tag": [
+    "award"
+   ],
+   "buyer": {
+    "id": "B3",
+    "name": "Bundesanstalt fuer Testwesen"
+   },
+   "parties": [
+    {
+     "id": "B3",
+     "name": "Bundesanstalt fuer Testwesen",
+     "roles": [
+      "buyer"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    },
+    {
+     "id": "S-SR-0",
+     "name": "Spree Reinigung GmbH",
+     "roles": [
+      "supplier"
+     ],
+     "address": {
+      "countryName": "Deutschland"
+     }
+    }
+   ],
+   "tender": {
+    "id": "0040",
+    "title": "Unterhaltsreinigung",
+    "description": "Reinigungsdienste fuer Verwaltungsgebaeude, Gebaeudereinigung.",
+    "items": [
+     {
+      "id": "1",
+      "classification": {
+       "scheme": "CPV",
+       "id": "90910000"
+      }
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "0040-A",
+     "date": "2024-07-15T12:00:00Z",
+     "suppliers": [
+      {
+       "id": "S-SR-0",
+       "name": "Spree Reinigung GmbH"
+      }
+     ],
+     "value": {
+      "amount": 386640.61,
+      "currency": "EUR"
+     }
+    }
+   ]
+  }
+ ]
+}

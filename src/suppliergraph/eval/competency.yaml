@@ -1,0 +1,110 @@
+# Competency questions with gold SPARQL. Entity names are *slots* resolved against the loaded graph
+# (e.g. "the buyer with the most tenders"), so the same file evaluates any dataset without edits.
+# Add your own questions: gold queries are the specification of what a correct answer is.
+
+slots:
+  top_buyer: |
+    SELECT ?label WHERE { ?t a sg:Tender ; sg:issuedBy ?b . ?b sg:legalName ?label }
+    GROUP BY ?label ORDER BY DESC(COUNT(?t)) LIMIT 1
+  top_supplier: |
+    SELECT ?label WHERE { ?a a sg:Award ; sg:awardedTo ?s . ?s sg:legalName ?label }
+    GROUP BY ?label ORDER BY DESC(COUNT(?a)) LIMIT 1
+  top_category: |
+    SELECT ?label WHERE { ?t a sg:Tender ; sg:hasCategory ?c . ?c skos:prefLabel ?label . FILTER(LANG(?label) = "en") }
+    GROUP BY ?label ORDER BY DESC(COUNT(?t)) LIMIT 1
+  grouped_entity: |
+    SELECT ?label WHERE { ?e sg:derivedUltimateParent ?p ; sg:legalName ?label }
+    GROUP BY ?label ORDER BY DESC(COUNT(?p)) LIMIT 1
+  flagged_entity: |
+    SELECT ?label WHERE { ?f a sg:ExposureFlag ; sg:flaggedEntity ?e . ?e sg:legalName ?label } ORDER BY ?label LIMIT 1
+
+questions:
+  - id: sh-01
+    type: single-hop
+    question: "Which suppliers have been awarded contracts by {top_buyer}?"
+    slots: [top_buyer]
+    gold: |
+      SELECT DISTINCT ?name WHERE { ?b sg:legalName "{top_buyer}" . ?t sg:issuedBy ?b .
+        ?a sg:awardOf ?t ; sg:awardedTo ?s . ?s sg:legalName ?name }
+  - id: sh-02
+    type: single-hop
+    question: "How many tenders has {top_buyer} issued?"
+    slots: [top_buyer]
+    gold: |
+      SELECT (COUNT(DISTINCT ?t) AS ?n) WHERE { ?b sg:legalName "{top_buyer}" . ?t sg:issuedBy ?b }
+  - id: sh-03
+    type: single-hop
+    question: "In which country is {top_supplier} registered?"
+    slots: [top_supplier]
+    gold: |
+      SELECT DISTINCT ?code WHERE { ?e sg:legalName "{top_supplier}" ; sg:registeredIn ?c . ?c sg:isoCode ?code }
+  - id: sh-04
+    type: single-hop
+    question: "What is the total awarded value for {top_supplier}?"
+    slots: [top_supplier]
+    gold: |
+      SELECT (SUM(?v) AS ?total) WHERE { ?s sg:legalName "{top_supplier}" . ?a sg:awardedTo ?s ; sg:valueAmount ?v }
+  - id: sh-05
+    type: single-hop
+    question: "Which tenders require ISO 9001?"
+    slots: []
+    gold: |
+      SELECT DISTINCT ?title WHERE { ?t sg:requiresStandard "ISO 9001" ; sg:title ?title }
+  - id: mh-01
+    type: multi-hop
+    question: "Who is the ultimate parent company of {grouped_entity}?"
+    slots: [grouped_entity]
+    gold: |
+      SELECT DISTINCT ?name WHERE { ?e sg:legalName "{grouped_entity}" ; sg:derivedUltimateParent ?p . ?p sg:legalName ?name }
+  - id: mh-02
+    type: multi-hop
+    question: "Which companies belong to the same corporate group as {grouped_entity}?"
+    slots: [grouped_entity]
+    gold: |
+      SELECT DISTINCT ?name WHERE { ?e sg:legalName "{grouped_entity}" ; sg:derivedUltimateParent ?p .
+        ?o sg:derivedUltimateParent ?p ; sg:legalName ?name . FILTER(?o != ?e) }
+  - id: mh-03
+    type: multi-hop
+    question: "Which suppliers have supplied the category '{top_category}' or any of its subcategories?"
+    slots: [top_category]
+    gold: |
+      SELECT DISTINCT ?name WHERE { ?c skos:prefLabel "{top_category}"@en . ?sub skos:broader* ?c .
+        ?s sg:suppliesCategory ?sub ; sg:legalName ?name }
+  - id: mh-04
+    type: multi-hop
+    question: "Which buyers have contracted with any company of the corporate group of {grouped_entity}?"
+    slots: [grouped_entity]
+    gold: |
+      SELECT DISTINCT ?name WHERE { ?e sg:legalName "{grouped_entity}" ; sg:derivedUltimateParent ?p .
+        ?m sg:derivedUltimateParent ?p . ?b sg:contractedWith ?m ; sg:legalName ?name }
+  - id: ag-01
+    type: aggregation
+    question: "Which three suppliers have the highest total award value?"
+    slots: []
+    gold: |
+      SELECT ?name (SUM(?v) AS ?total) WHERE { ?a sg:awardedTo ?s ; sg:valueAmount ?v . ?s sg:legalName ?name }
+      GROUP BY ?name ORDER BY DESC(?total) LIMIT 3
+  - id: ag-02
+    type: aggregation
+    question: "How many awards were made in each year?"
+    slots: []
+    gold: |
+      SELECT ?year (COUNT(?a) AS ?n) WHERE { ?a a sg:Award ; sg:awardDate ?d . BIND(YEAR(?d) AS ?year) } GROUP BY ?year
+  - id: co-01
+    type: compliance
+    question: "Which entities are flagged for possible sanction exposure and need review?"
+    slots: []
+    gold: |
+      SELECT DISTINCT ?name WHERE { ?f a sg:ExposureFlag ; sg:flaggedEntity ?e . ?e sg:legalName ?name }
+  - id: co-02
+    type: compliance
+    question: "Which entities are exposed to a sanction match through a parent company rather than directly?"
+    slots: []
+    gold: |
+      SELECT DISTINCT ?name WHERE { ?f a sg:ExposureFlag ; sg:flaggedEntity ?e ; sg:hops ?h . ?e sg:legalName ?name . FILTER(?h >= 1) }
+  - id: co-03
+    type: compliance
+    question: "Which obligations apply to suppliers?"
+    slots: []
+    gold: |
+      SELECT DISTINCT ?text WHERE { ?o a sg:Obligation ; sg:appliesToRole sg:Supplier ; sg:obligationText ?text }

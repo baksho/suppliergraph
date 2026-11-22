@@ -1,0 +1,7 @@
+# Supplier -> CPV category edge derived from awarded tenders.
+PREFIX sg: <https://suppliergraph.example/ontology#>
+CONSTRUCT { ?s sg:suppliesCategory ?c }
+WHERE {
+  ?a sg:awardedTo ?s ; sg:awardOf ?t .
+  ?t sg:hasCategory ?c .
+}

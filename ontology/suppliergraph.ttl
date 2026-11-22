@@ -1,0 +1,290 @@
+@prefix sg:      <https://suppliergraph.example/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix org:     <http://www.w3.org/ns/org#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+
+# ---------------------------------------------------------------------------
+# SupplierGraph ontology (OWL 2, kept inside the OWL 2 RL profile so that rule
+# based materialisation works in GraphDB and in the local owlrl reasoner).
+#
+# The base IRI is a reserved placeholder (".example"); replace it with your own
+# namespace before publishing (see docs/design.md, "IRI policy").
+# ---------------------------------------------------------------------------
+
+<https://suppliergraph.example/ontology> a owl:Ontology ;
+    dcterms:title "SupplierGraph ontology"@en ;
+    owl:versionInfo "0.1.0" ;
+    rdfs:comment """Procurement and supplier-intelligence ontology: legal entities and their
+consolidation hierarchy, tenders and awards, CPV product categories, sanctions-list matches
+and extracted regulatory obligations. Reuses W3C ORG, SKOS, PROV-O, DCAT and Dublin Core."""@en .
+
+# Design note: cardinality and data-quality constraints (exactly one buyer per tender, one LEI per
+# entity, ...) live in SHACL (shapes/), not in OWL. Under the open-world assumption an
+# owl:FunctionalProperty would silently *merge* two conflicting values via owl:sameAs instead of
+# reporting the conflict, which is the opposite of what a data-quality gate should do.
+
+# ------------------------------- Classes -----------------------------------
+
+sg:LegalEntity a owl:Class ;
+    rdfs:subClassOf org:FormalOrganization ;
+    rdfs:label "Legal entity"@en ;
+    rdfs:comment "An organisation with legal personality, e.g. a company registered with an LEI, or an unresolved procurement party that could not be matched to an LEI."@en .
+
+sg:Buyer a owl:Class ;
+    rdfs:subClassOf sg:LegalEntity ;
+    rdfs:label "Buyer"@en ;
+    rdfs:comment "A legal entity acting as contracting authority or purchasing organisation. Inferred from sg:issuedBy."@en .
+
+sg:Supplier a owl:Class ;
+    rdfs:subClassOf sg:LegalEntity ;
+    rdfs:label "Supplier"@en ;
+    rdfs:comment "A legal entity that has won at least one award. Inferred from sg:awardedTo."@en .
+
+sg:Country a owl:Class ;
+    rdfs:label "Country"@en ;
+    rdfs:comment "A country identified by its ISO 3166-1 alpha-2 code."@en .
+
+sg:Tender a owl:Class ;
+    rdfs:label "Tender"@en ;
+    rdfs:comment "A public procurement procedure (a call for tenders / contract notice) published by a buyer."@en .
+
+sg:Award a owl:Class ;
+    rdfs:label "Award"@en ;
+    rdfs:comment "The award of (part of) a tender to one supplier, with a value and date."@en .
+
+sg:ProductCategory a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Product category"@en ;
+    rdfs:comment "A concept of the Common Procurement Vocabulary (CPV). Hierarchy is expressed with skos:broader."@en .
+
+sg:SanctionEntry a owl:Class ;
+    rdfs:label "Sanction list entry"@en ;
+    rdfs:comment "An entry (entity) on a sanctions or watch list, as published by the list provider."@en .
+
+sg:SanctionMatch a owl:Class ;
+    rdfs:label "Sanction match"@en ;
+    rdfs:comment "A scored candidate match between a legal entity and a sanction list entry. A match is a lead for human review, never a finding."@en .
+
+sg:ExposureFlag a owl:Class ;
+    rdfs:label "Exposure flag"@en ;
+    rdfs:comment "A derived flag stating that a legal entity itself, or an entity in its consolidation chain, has a sanction match that needs review. Carries the chain (sg:viaEntity) and number of hops."@en .
+
+sg:Regulation a owl:Class ;
+    rdfs:label "Regulation"@en ;
+    rdfs:comment "A legal act (e.g. an EU directive or a national law) from which obligations are extracted."@en .
+
+sg:Obligation a owl:Class ;
+    rdfs:label "Obligation"@en ;
+    rdfs:comment "A requirement stated in a regulation, extracted from text and linked to the sentence it was taken from."@en .
+
+sg:ExtractionActivity a owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "Extraction activity"@en ;
+    rdfs:comment "One run of an information-extraction pipeline (model, prompt version, time)."@en .
+
+sg:DataProduct a owl:Class ;
+    rdfs:subClassOf dcat:Dataset ;
+    rdfs:label "Data product"@en ;
+    rdfs:comment "A governed, versioned source dataset. Every triple of the knowledge graph lives in the named graph of the data product it came from."@en .
+
+# --------------------------- Object properties -----------------------------
+
+sg:registeredIn a owl:ObjectProperty ;
+    rdfs:domain sg:LegalEntity ; rdfs:range sg:Country ;
+    rdfs:label "registered in"@en ;
+    rdfs:comment "Country of the legal address / registration of the entity."@en .
+
+sg:hasAncestor a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:domain sg:LegalEntity ; rdfs:range sg:LegalEntity ;
+    rdfs:label "has ancestor"@en ;
+    rdfs:comment "Transitive closure of the consolidation hierarchy: the entity is (directly or indirectly) consolidated by the range entity."@en .
+
+sg:hasDirectParent a owl:ObjectProperty ;
+    rdfs:subPropertyOf sg:hasAncestor ;
+    rdfs:domain sg:LegalEntity ; rdfs:range sg:LegalEntity ;
+    rdfs:label "has direct parent"@en ;
+    rdfs:comment "The entity is directly consolidated by the range entity (accounting consolidation, not necessarily ownership percentage)."@en .
+
+sg:hasUltimateParent a owl:ObjectProperty ;
+    rdfs:subPropertyOf sg:hasAncestor ;
+    rdfs:domain sg:LegalEntity ; rdfs:range sg:LegalEntity ;
+    rdfs:label "has ultimate parent (published)"@en ;
+    rdfs:comment "Ultimate consolidating parent as published by the source."@en .
+
+sg:derivedUltimateParent a owl:ObjectProperty ;
+    rdfs:domain sg:LegalEntity ; rdfs:range sg:LegalEntity ;
+    rdfs:label "has ultimate parent (derived)"@en ;
+    rdfs:comment "Top of the chain of sg:hasDirectParent links, derived by a rule. Compared against the published value as a data-quality check."@en .
+
+sg:issuedBy a owl:ObjectProperty ;
+    rdfs:domain sg:Tender ; rdfs:range sg:Buyer ;
+    rdfs:label "issued by"@en ;
+    rdfs:comment "The buyer that published the tender."@en .
+
+sg:awardOf a owl:ObjectProperty ;
+    rdfs:domain sg:Award ; rdfs:range sg:Tender ;
+    rdfs:label "award of"@en ;
+    rdfs:comment "The tender this award belongs to."@en .
+
+sg:awardedTo a owl:ObjectProperty ;
+    rdfs:domain sg:Award ; rdfs:range sg:Supplier ;
+    rdfs:label "awarded to"@en ;
+    rdfs:comment "The supplier that received the award."@en .
+
+sg:wonAward a owl:ObjectProperty ;
+    owl:inverseOf sg:awardedTo ;
+    rdfs:label "won award"@en .
+
+sg:hasCategory a owl:ObjectProperty ;
+    rdfs:domain sg:Tender ; rdfs:range sg:ProductCategory ;
+    rdfs:label "has category"@en ;
+    rdfs:comment "A CPV category of the tender, whether declared in the notice or linked by the extraction pipeline."@en .
+
+sg:hasDeclaredCategory a owl:ObjectProperty ;
+    rdfs:subPropertyOf sg:hasCategory ;
+    rdfs:label "has declared category"@en ;
+    rdfs:comment "CPV code stated by the buyer in the notice."@en .
+
+sg:hasLinkedCategory a owl:ObjectProperty ;
+    rdfs:subPropertyOf sg:hasCategory ;
+    rdfs:label "has linked category"@en ;
+    rdfs:comment "CPV code predicted from the tender text by the entity-linking pipeline (lower trust than declared)."@en .
+
+sg:contractedWith a owl:ObjectProperty ;
+    rdfs:domain sg:Buyer ; rdfs:range sg:Supplier ;
+    rdfs:label "contracted with"@en ;
+    rdfs:comment "Derived: the buyer has awarded at least one tender to the supplier."@en .
+
+sg:suppliesCategory a owl:ObjectProperty ;
+    rdfs:domain sg:Supplier ; rdfs:range sg:ProductCategory ;
+    rdfs:label "supplies category"@en ;
+    rdfs:comment "Derived: the supplier has won an award in a tender of this category."@en .
+
+sg:matchedEntity a owl:ObjectProperty ;
+    rdfs:domain sg:SanctionMatch ; rdfs:range sg:LegalEntity ;
+    rdfs:label "matched entity"@en .
+
+sg:matchedEntry a owl:ObjectProperty ;
+    rdfs:domain sg:SanctionMatch ; rdfs:range sg:SanctionEntry ;
+    rdfs:label "matched entry"@en .
+
+sg:flaggedEntity a owl:ObjectProperty ;
+    rdfs:domain sg:ExposureFlag ; rdfs:range sg:LegalEntity ;
+    rdfs:label "flagged entity"@en .
+
+sg:viaEntity a owl:ObjectProperty ;
+    rdfs:domain sg:ExposureFlag ; rdfs:range sg:LegalEntity ;
+    rdfs:label "via entity"@en ;
+    rdfs:comment "The entity (the flagged entity itself or one of its ancestors) that carries the sanction match."@en .
+
+sg:viaMatch a owl:ObjectProperty ;
+    rdfs:domain sg:ExposureFlag ; rdfs:range sg:SanctionMatch ;
+    rdfs:label "via match"@en .
+
+sg:extractedFrom a owl:ObjectProperty ;
+    rdfs:domain sg:Obligation ; rdfs:range sg:Regulation ;
+    rdfs:label "extracted from"@en .
+
+sg:appliesToRole a owl:ObjectProperty ;
+    rdfs:domain sg:Obligation ;
+    rdfs:label "applies to role"@en ;
+    rdfs:comment "Role the obligation addresses; value is sg:Buyer or sg:Supplier (class used as a role marker)."@en .
+
+# -------------------------- Datatype properties ----------------------------
+
+sg:legalName a owl:DatatypeProperty ;
+    rdfs:subPropertyOf rdfs:label ;
+    rdfs:range xsd:string ;
+    rdfs:label "legal name"@en .
+
+sg:recordedName a owl:DatatypeProperty ;
+    rdfs:subPropertyOf skos:altLabel ;
+    rdfs:range xsd:string ;
+    rdfs:label "recorded name"@en ;
+    rdfs:comment "A name under which the entity appears in a source record (e.g. in a tender), before entity resolution."@en .
+
+sg:lei a owl:DatatypeProperty ;
+    rdfs:domain sg:LegalEntity ; rdfs:range xsd:string ;
+    rdfs:label "LEI"@en ;
+    rdfs:comment "Legal Entity Identifier (ISO 17442), 20 characters."@en .
+
+sg:isoCode a owl:DatatypeProperty ;
+    rdfs:domain sg:Country ; rdfs:range xsd:string ;
+    rdfs:label "ISO code"@en .
+
+sg:title a owl:DatatypeProperty ;
+    rdfs:subPropertyOf rdfs:label ;
+    rdfs:domain sg:Tender ; rdfs:range xsd:string ;
+    rdfs:label "title"@en .
+
+sg:description a owl:DatatypeProperty ;
+    rdfs:domain sg:Tender ; rdfs:range xsd:string ;
+    rdfs:label "description"@en .
+
+sg:publicationDate a owl:DatatypeProperty ;
+    rdfs:domain sg:Tender ; rdfs:range xsd:date ;
+    rdfs:label "publication date"@en .
+
+sg:awardDate a owl:DatatypeProperty ;
+    rdfs:domain sg:Award ; rdfs:range xsd:date ;
+    rdfs:label "award date"@en .
+
+sg:valueAmount a owl:DatatypeProperty ;
+    rdfs:domain sg:Award ; rdfs:range xsd:decimal ;
+    rdfs:label "value amount"@en .
+
+sg:valueCurrency a owl:DatatypeProperty ;
+    rdfs:domain sg:Award ; rdfs:range xsd:string ;
+    rdfs:label "value currency"@en ;
+    rdfs:comment "ISO 4217 currency code."@en .
+
+sg:requiresStandard a owl:DatatypeProperty ;
+    rdfs:domain sg:Tender ; rdfs:range xsd:string ;
+    rdfs:label "requires standard"@en ;
+    rdfs:comment "A standard or certification (e.g. ISO 9001) required by the tender text, found by pattern extraction."@en .
+
+sg:matchScore a owl:DatatypeProperty ;
+    rdfs:domain sg:SanctionMatch ; rdfs:range xsd:double ;
+    rdfs:label "match score"@en .
+
+sg:matchMethod a owl:DatatypeProperty ;
+    rdfs:domain sg:SanctionMatch ; rdfs:range xsd:string ;
+    rdfs:label "match method"@en .
+
+sg:reviewStatus a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "review status"@en ;
+    rdfs:comment "Workflow status of a match or flag, e.g. needs_review, confirmed, rejected."@en .
+
+sg:hops a owl:DatatypeProperty ;
+    rdfs:domain sg:ExposureFlag ; rdfs:range xsd:integer ;
+    rdfs:label "hops"@en ;
+    rdfs:comment "Number of consolidation steps between the flagged entity and the entity carrying the match (0 = the entity itself)."@en .
+
+sg:obligationText a owl:DatatypeProperty ;
+    rdfs:domain sg:Obligation ; rdfs:range xsd:string ;
+    rdfs:label "obligation text"@en ;
+    rdfs:comment "Verbatim sentence of the regulation that states the obligation."@en .
+
+sg:article a owl:DatatypeProperty ;
+    rdfs:domain sg:Obligation ; rdfs:range xsd:string ;
+    rdfs:label "article"@en .
+
+sg:celex a owl:DatatypeProperty ;
+    rdfs:domain sg:Regulation ; rdfs:range xsd:string ;
+    rdfs:label "CELEX number"@en .
+
+sg:confidence a owl:DatatypeProperty ;
+    rdfs:range xsd:double ;
+    rdfs:label "confidence"@en .
+
+sg:sourceNote a owl:DatatypeProperty ;
+    rdfs:domain sg:DataProduct ; rdfs:range xsd:string ;
+    rdfs:label "source note"@en ;
+    rdfs:comment "Where the data product comes from and which licence note applies (to be verified by the operator)."@en .

@@ -1,0 +1,7 @@
+# Buyer -> supplier edge derived from tenders and awards (used by the UI and by link prediction).
+PREFIX sg: <https://suppliergraph.example/ontology#>
+CONSTRUCT { ?b sg:contractedWith ?s }
+WHERE {
+  ?t sg:issuedBy ?b .
+  ?a sg:awardOf ?t ; sg:awardedTo ?s .
+}
